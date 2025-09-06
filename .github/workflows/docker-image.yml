@@ -1,0 +1,23 @@
+name: Build an Publish to Dockerhub
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build_and_push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile -t gurkesalat/minecraft-ozone-skyblock-reborn:latest
+    - name: push
+      run: |
+        docker login -u gurkesalat -p ${{secrets.DOCKER_HUB}}
+        docker push gurkesalat/minecraft-ozone-skyblock-reborn:latest
