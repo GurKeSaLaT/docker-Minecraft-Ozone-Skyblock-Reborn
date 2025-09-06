@@ -4,7 +4,7 @@ FROM openjdk:17-buster
 
 LABEL version="latest"
 
-RUN apt-get install -y curl unzip && \
+RUN apt-get install -y curl unzip rsync && \
  adduser --uid 99 --gid 100 --home /data --disabled-password minecraft
 
 COPY launch.sh /launch.sh
