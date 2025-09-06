@@ -2,6 +2,8 @@
 
 set -x
 
+
+FORGE_VERSION=1.20.1-47.4.6
 cd /data
 
 if ! [[ "$EULA" = "false" ]] || grep -i true eula.txt; then
@@ -13,9 +15,10 @@ fi
 
 if ! [[ -f Ozone-Skyblock-Reborn_Server_1.19.zip ]]; then
 	rm -fr config defaultconfigs global_data_packs global_resource_packs mods packmenu Ozone-Skyblock-Reborn_Server_*.zip
-	curl -Lo Ozone-Skyblock-Reborn_Server_1.19.zip 'https://edge.forgecdn.net/files/6917/148/Ozone%20Skyblock%20Reborn-1.19.zip' && unzip -u -o Ozone-Skyblock-Reborn_Server_1.19.zip -d /data
-	chmod +x Install.sh
-	./Install.sh
+	curl -Lo Ozone-Skyblock-Reborn_Server_1.19.zip 'https://edge.forgecdn.net/files/6917/148/Ozone%20Skyblock%20Reborn-1.19.zip' 
+	unzip -u -o Ozone-Skyblock-Reborn_Server_1.19.zip -d /data
+	curl -Lo forge-${FORGE_VERSION}-installer.jar http://files.minecraftforge.net/maven/net/minecraftforge/forge/$FORGE_VERSION/forge-$FORGE_VERSION-installer.jar
+	java -jar forge-${FORGE_VERSION}-installer.jar --installServer
 fi
 
 if [[ -n "$MOTD" ]]; then
@@ -31,10 +34,5 @@ if [[ -n "$ALLOWLIST" ]]; then
     echo $ALLOWLIST | awk -v RS=, '{print}' > white-list.txt
 fi
 
-. ./settings.sh
-
-JVM_OPTS = $JVM_OPTS $JAVA_PARAMETERS
-
-curl -Lo log4j2_112-116.xml https://launcher.mojang.com/v1/objects/02937d122c86ce73319ef9975b58896fc1b491d1/log4j2_112-116.xml
 
 ./run.sh
