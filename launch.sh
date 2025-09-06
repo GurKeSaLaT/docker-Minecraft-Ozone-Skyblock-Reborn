@@ -15,7 +15,7 @@ fi
 
 if ! [[ -f Ozone-Skyblock-Reborn_Server_1.19.zip ]]; then
 	rm -fr config defaultconfigs global_data_packs global_resource_packs mods packmenu Ozone-Skyblock-Reborn_Server_*.zip
-	curl -Lo Ozone-Skyblock-Reborn_Server_1.19.zip 'https://edge.forgecdn.net/files/6917/148/Ozone%20Skyblock%20Reborn-1.19.zip' 
+	curl -Lo Ozone-Skyblock-Reborn_Server_1.19.zip 'https://edge.forgecdn.net/files/6917/151/OSR%20Server%20-%201.19.zip' 
 	unzip -u -o Ozone-Skyblock-Reborn_Server_1.19.zip -d /data
 	curl -Lo forge-${FORGE_VERSION}-installer.jar http://files.minecraftforge.net/maven/net/minecraftforge/forge/$FORGE_VERSION/forge-$FORGE_VERSION-installer.jar
 	java -jar forge-${FORGE_VERSION}-installer.jar --installServer
