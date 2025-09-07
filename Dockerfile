@@ -4,9 +4,9 @@ FROM eclipse-temurin:17-jre
 
 LABEL version="latest"
 
-RUN apt-get update &&\
+RUN apt-get update && \
  apt-get install -y curl unzip rsync && \
- adduser --uid 99 -- gid 100 --home /data --disabled-password minecraft
+ adduser --uid 99 --gid 100 --home /data --disabled-password minecraft
 
 COPY launch.sh /launch.sh
 RUN chmod +x /launch.sh
